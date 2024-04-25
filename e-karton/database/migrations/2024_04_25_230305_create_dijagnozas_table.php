@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('dijagnozas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('naziv');
+            $table->text('opis');
             $table->timestamps();
         });
     }
