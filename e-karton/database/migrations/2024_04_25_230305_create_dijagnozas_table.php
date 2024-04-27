@@ -9,14 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up() : void
     {
         Schema::create('dijagnozas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->string('naziv');
             $table->text('opis');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('lekar_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('lekar_id')->references('id')->on('lekars');
         });
     }
 
