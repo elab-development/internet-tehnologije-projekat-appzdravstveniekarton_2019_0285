@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('ime');
             $table->string('prezime');
             $table->string('specijalizacija');
+            $table->string('adresa');
             $table->timestamps();
         });
     }
