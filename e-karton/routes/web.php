@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LekarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+
+
+Route::get('/lekars', [LekarController::class, 'index']);
+Route::get('/lekars/{id}', [LekarController::class, 'show']);
+Route::get('/lekars/obrisi/{id}', [LekarController::class, 'destroy']);
