@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+
+use App\Models\Dijagnoza;
+use App\Models\User;
+use App\Models\Lekar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +21,10 @@ class DijagnozaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::inRandomOrder()->first()->id,
+            'lekar_id' => Lekar::inRandomOrder()->first()->id,
+            'naziv' => $this->faker->word,
+            'opis' => $this->faker->sentence,
         ];
     }
 }

@@ -17,7 +17,12 @@ class LekarFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'Ime_Prezime' => $this->faker->firstName . ' ' . $this->faker->lastName,
+            'specijalizacija' => $this->faker->randomElement(['Kardiolog', 'Neurolog', 'Ortoped', 'Dermatolog']),
+            
+            
+
+
         ];
     }
 }

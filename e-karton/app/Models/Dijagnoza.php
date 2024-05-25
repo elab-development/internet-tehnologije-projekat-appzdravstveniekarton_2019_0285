@@ -11,4 +11,10 @@ class Dijagnoza extends Model
     protected $fillable = [
         'user_id', 'lekar_id', 'naziv', 'opis'
     ];
+
+    public function dijagnoze()
+{
+    return $this->hasOne(Dijagnoza::class);
+}
+
 }
