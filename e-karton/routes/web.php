@@ -3,17 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LekarController;
+use App\Http\Controllers\DijagnozaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,3 +18,8 @@ Route::get('/users/{id}', [UserController::class, 'show']);
 Route::get('/lekars', [LekarController::class, 'index']);
 Route::get('/lekars/{id}', [LekarController::class, 'show']);
 Route::get('/lekars/obrisi/{id}', [LekarController::class, 'destroy']);
+
+
+
+Route::get('lekars/create', [LekarController::class, 'create'])->name('lekars.create');
+Route::post('lekars', [LekarController::class, 'store'])->name('lekars.store');

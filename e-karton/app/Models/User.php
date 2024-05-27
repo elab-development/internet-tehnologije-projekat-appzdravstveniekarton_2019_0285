@@ -43,8 +43,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function dijagnoze()
-    {
-        return $this->hasMany(Dijagnoza::class);
-    }
+    public function dijagnozas()
+{
+    return $this->hasMany(Dijagnoza::class);
+}
 }
