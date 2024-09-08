@@ -1,0 +1,46 @@
+/* Osnovni stil za login kontejner */
+.container {
+    font-family: Arial, sans-serif; /* Postavi font za stranicu */
+    background-color: #f4f4f4; /* Svetlo siva pozadina */
+    padding: 20px; /* Unutrašnji razmak */
+    max-width: 400px; /* Maksimalna širina forme */
+    margin: 0 auto; /* Centriranje forme */
+    border-radius: 8px; /* Zaobljeni ivice */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sivi senk za dodatni efekat */
+    text-align: center; /* Centriranje teksta unutar forme */
+  }
+  
+  /* Stil za naslov */
+  .container h2 {
+    color: #333; /* Tamno siva boja teksta */
+    margin-bottom: 20px; /* Razmak ispod naslova */
+  }
+  
+  /* Stil za input polja */
+  .container input {
+    width: 100%; /* Širina input polja */
+    padding: 10px; /* Unutrašnji razmak */
+    margin-bottom: 15px; /* Razmak između input polja */
+    border: 1px solid #ccc; /* Sivi okvir */
+    border-radius: 4px; /* Zaobljeni ivice */
+    font-size: 16px; /* Veličina fonta */
+  }
+  
+  /* Stil za dugme */
+  .container button {
+    display: block; /* Postavi dugme da bude blok element */
+    width: 100%; /* Širina dugmeta */
+    padding: 10px; /* Unutrašnji razmak */
+    background-color: #007bff; /* Plava boja pozadine */
+    color: white; /* Bela boja teksta */
+    border: none; /* Ukloni okvir */
+    border-radius: 4px; /* Zaobljeni ivice */
+    font-size: 16px; /* Veličina fonta */
+    cursor: pointer; /* Prikaz kursora kao ruke na dugmetu */
+    transition: background-color 0.3s; /* Efekat prelaza na boji pozadine */
+  }
+  
+  .container button:hover {
+    background-color: #0056b3; /* Tamnija plava boja kada je dugme u fokusu */
+  }
+  
