@@ -6,61 +6,52 @@ use App\Models\Dijagnoza;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
 class DijagnozaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $dijagnoze = Dijagnoza::all();
+        return response()->json($dijagnoze);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'lekar_id' => 'required|exists:lekars,id',
+            'naziv' => 'required|string|max:255',
+            'opis' => 'required|string',
+        ]);
+
+        $dijagnoza = Dijagnoza::create($validatedData);
+        return response()->json($dijagnoza, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Dijagnoza $dijagnoza)
+    public function show($id)
     {
-        //
+        $dijagnoza = Dijagnoza::findOrFail($id);
+        return response()->json($dijagnoza);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Dijagnoza $dijagnoza)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'user_id' => 'exists:users,id',
+            'lekar_id' => 'exists:lekars,id',
+            'naziv' => 'string|max:255',
+            'opis' => 'string',
+        ]);
+
+        $dijagnoza = Dijagnoza::findOrFail($id);
+        $dijagnoza->update($validatedData);
+        return response()->json($dijagnoza, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Dijagnoza $dijagnoza)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Dijagnoza $dijagnoza)
-    {
-        //
+        $dijagnoza = Dijagnoza::findOrFail($id);
+        $dijagnoza->delete();
+        return response()->json(null, 204);
     }
 }

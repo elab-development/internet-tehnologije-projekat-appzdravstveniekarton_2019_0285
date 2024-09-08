@@ -8,34 +8,40 @@ use Illuminate\Http\Request;
 
 class LekarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        $lekars=Lekar::all();
-        return $lekars;
+        $lekars = Lekar::all();
+
+        return response()->json($lekars)
+            ->header('Access-Control-Allow-Origin', '*')
+            ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            ->header('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Origin, Authorization');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+   
     public function create()
-    {
-        //
-    }
+{
+    
+    return view('lekars.create');
+}
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
+    
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'ime' => 'required|string|max:255',
+            'prezime' => 'required|string|max:255',
+            'specijalizacija' => 'required|string|max:255',
+            'adresa' => 'required|string|max:255',
+        ]);
+
+        $lekar = Lekar::create($validatedData);
+        return response()->json($lekar, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show($lekar_id)
     {
         $lekar=Lekar::find($lekar_id);
@@ -46,40 +52,34 @@ class LekarController extends Controller
         return response()->json($lekar);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Lekar $lekar)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, Lekar $lekar)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy($lekar_id)
 {
-    // Pronalaženje lekara po ID-u
+    
     $lekar = Lekar::find($lekar_id);
 
-    // Provera da li je lekar pronađen
+    
     if (!$lekar) {
-        // Ako lekar nije pronađen, vraćamo odgovarajući odgovor sa statusom 404
+        
         return response()->json(['message' => 'Lekar not found'], 404);
     }
 
-    // Brisanje lekara iz baze podataka
+    
     $lekar->delete();
 
-    // Vraćanje odgovora o uspehu kao JSON odgovor
+    
     return response()->json(['message' => 'Lekar deleted']);
 }
 

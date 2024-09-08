@@ -12,9 +12,14 @@ class Dijagnoza extends Model
         'user_id', 'lekar_id', 'naziv', 'opis'
     ];
 
-    public function dijagnoze()
-{
-    return $this->hasOne(Dijagnoza::class);
-}
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function lekar()
+    {
+        return $this->belongsTo(Lekar::class);
+    }
 
 }
