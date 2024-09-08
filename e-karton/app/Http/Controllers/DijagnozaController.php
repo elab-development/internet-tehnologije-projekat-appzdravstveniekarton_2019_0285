@@ -54,4 +54,8 @@ class DijagnozaController extends Controller
         $dijagnoza->delete();
         return response()->json(null, 204);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1322f0259a970ee86529d24a6997197b54eaa345
