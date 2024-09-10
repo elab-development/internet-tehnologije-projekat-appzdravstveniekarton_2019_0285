@@ -16,14 +16,6 @@ class Dijagnoza extends Model
     {
         return $this->belongsTo(User::class);
     }
-<<<<<<< HEAD
-
-    public function lekar()
-    {
-        return $this->belongsTo(Lekar::class);
-    }
-=======
->>>>>>> 1322f0259a970ee86529d24a6997197b54eaa345
 
     public function lekar()
     {

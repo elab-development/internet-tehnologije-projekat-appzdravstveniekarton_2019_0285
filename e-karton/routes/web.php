@@ -23,8 +23,5 @@ Route::get('/lekars/obrisi/{id}', [LekarController::class, 'destroy']);
 
 Route::get('lekars/create', [LekarController::class, 'create'])->name('lekars.create');
 Route::post('lekars', [LekarController::class, 'store'])->name('lekars.store');
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 1322f0259a970ee86529d24a6997197b54eaa345
