@@ -6,9 +6,11 @@ import '../styles/Dijagnoze.css';
 
 const HomePage = () => {
   const [diagnoses, setDiagnoses] = useState([]);
-  const [filteredDiagnoses, setFilteredDiagnoses] = useState([]); // Dodato stanje za filtrirane dijagnoze
-  const [searchTerm, setSearchTerm] = useState(''); // Stanje za pretragu
+  const [filteredDiagnoses, setFilteredDiagnoses] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1); // Dodato stanje za trenutnu stranicu
+  const diagnosesPerPage = 5; // Broj dijagnoza po stranici
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const HomePage = () => {
       })
       .then(response => {
         setDiagnoses(response.data);
-        setFilteredDiagnoses(response.data); // Inicijalno setuj filtrirane dijagnoze
+        setFilteredDiagnoses(response.data);
       })
       .catch(error => {
         console.error('Error fetching diagnoses:', error);
@@ -41,7 +43,6 @@ const HomePage = () => {
     }
   }, []);
 
-  // Funkcija za filtriranje dijagnoza po nazivu
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
     setSearchTerm(searchValue);
@@ -63,21 +64,27 @@ const HomePage = () => {
     return new Date(dateString).toLocaleDateString('sr-RS', options);
   };
 
+  // Računanje dijagnoza za trenutnu stranicu
+  const indexOfLastDiagnosis = currentPage * diagnosesPerPage;
+  const indexOfFirstDiagnosis = indexOfLastDiagnosis - diagnosesPerPage;
+  const currentDiagnoses = filteredDiagnoses.slice(indexOfFirstDiagnosis, indexOfLastDiagnosis);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="home-page">
       <h2>Moje Dijagnoze</h2>
       
-      {/* Input polje za pretragu */}
       <input
         type="text"
         placeholder="Pretraži po nazivu..."
         value={searchTerm}
-        onChange={handleSearch} // Poziv funkcije za pretragu
+        onChange={handleSearch}
       />
 
       {isLoggedIn ? (
         <ul>
-          {filteredDiagnoses.map((diagnosis, index) => (
+          {currentDiagnoses.map((diagnosis, index) => (
             <li key={index}>
               <strong>Naziv:</strong> {diagnosis.naziv}<br />
               <strong>Opis:</strong> {diagnosis.opis}<br />
@@ -89,9 +96,18 @@ const HomePage = () => {
       ) : (
         <p>Niste ulogovani. Molimo ulogujte se da vidite svoje dijagnoze.</p>
       )}
+
       <Button label="Odjavi se" onClick={handleLogout} />
 
-      {/* Link u donjem levom uglu */}
+      {/* Navigacija za stranice */}
+      <div className="pagination">
+        {[...Array(Math.ceil(filteredDiagnoses.length / diagnosesPerPage)).keys()].map(number => (
+          <button key={number} onClick={() => paginate(number + 1)}>
+            {number + 1}
+          </button>
+        ))}
+      </div>
+
       <a
         href="https://www.rfzo.rs/index.php/osiguranalica/provera-overe-zdrisp"
         className="footer-link"

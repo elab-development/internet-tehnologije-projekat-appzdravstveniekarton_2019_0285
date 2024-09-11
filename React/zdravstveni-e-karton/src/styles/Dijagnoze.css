@@ -1,51 +1,78 @@
-/* Osnovni stil za home-page kontejner */
+/* Stilovi za glavnu stranicu */
 .home-page {
-    font-family: Arial, sans-serif; /* Postavi font za stranicu */
-    background-color: #f4f4f4; /* Svetlo siva pozadina */
-    padding: 20px; /* Unutrašnji razmak */
-    max-width: 800px; /* Maksimalna širina stranice */
-    margin: 0 auto; /* Centriranje stranice */
-    border-radius: 8px; /* Zaobljeni ivice */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sivi senk za dodatni efekat */
-  }
-  
-  /* Stil za naslov */
-  .home-page h2 {
-    color: #333; /* Tamno siva boja teksta */
-    text-align: center; /* Centriranje naslova */
-    margin-bottom: 20px; /* Razmak ispod naslova */
-  }
-  
-  /* Stil za listu dijagnoza */
-  .home-page ul {
-    list-style-type: none; /* Ukloni standardne oznake liste */
-    padding: 0; /* Ukloni unutrašnji razmak */
-  }
-  
-  .home-page li {
-    background-color: #fff; /* Bela pozadina za stavke liste */
-    margin-bottom: 10px; /* Razmak između stavki */
-    padding: 10px; /* Unutrašnji razmak u stavkama liste */
-    border-radius: 4px; /* Zaobljeni ivice */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Senka za stavke */
-  }
-  
-  /* Stil za dugme */
-  .home-page .button {
-    display: block; /* Postavi dugme da bude blok element */
-    width: 200px; /* Širina dugmeta */
-    margin: 20px auto; /* Centriranje dugmeta */
-    padding: 10px; /* Unutrašnji razmak */
-    background-color: #007bff; /* Plava boja pozadine */
-    color: white; /* Bela boja teksta */
-    border: none; /* Ukloni okvir */
-    border-radius: 4px; /* Zaobljeni ivice */
-    font-size: 16px; /* Veličina fonta */
-    cursor: pointer; /* Prikaz kursora kao ruke na dugmetu */
-    transition: background-color 0.3s; /* Efekat prelaza na boji pozadine */
-  }
-  
-  .home-page .button:hover {
-    background-color: #0056b3; /* Tamnija plava boja kada je dugme u fokusu */
-  }
-  
+  padding: 20px;
+}
+
+/* Stil za polje za pretragu */
+.home-page input[type="text"] {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Stilovi za listu dijagnoza */
+.home-page ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.home-page li {
+  background-color: #f8f8f8;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Stilovi za dugmad paginacije */
+.pagination {
+  display: flex; /* Postavlja elemente u jedan red */
+  justify-content: center; /* Centriranje paginacije */
+  margin-top: 20px; /* Razmak iznad paginacije */
+}
+
+/* Stil za dugmad paginacije */
+.pagination button {
+  background-color: #007bff; /* Plava pozadina */
+  color: white; /* Bela boja teksta */
+  border: none; /* Bez ivica */
+  padding: 8px 16px; /* Unutrašnji razmak */
+  margin: 0 5px; /* Razmak između dugmadi */
+  border-radius: 4px; /* Zaobljeni ivice */
+  cursor: pointer; /* Prikaz kursora kao ruke na dugmetu */
+  font-size: 14px; /* Veličina fonta */
+  transition: background-color 0.3s; /* Prelaz na boji pozadine */
+}
+
+.pagination button:hover {
+  background-color: #0056b3; /* Tamnija plava pri hover efektu */
+}
+
+/* Stil za trenutno aktivnu stranicu */
+.pagination button.active {
+  background-color: #0056b3; /* Tamnija plava za aktivnu stranicu */
+  font-weight: bold; /* Podebljan font */
+  cursor: default; /* Standardni kursor */
+}
+
+/* Stil za onemogućeno dugme (ako je potrebno) */
+.pagination button:disabled {
+  background-color: #cccccc; /* Svetlo siva pozadina */
+  cursor: not-allowed; /* Kursor za onemogućeno stanje */
+}
+
+/* Stil za footer link */
+.footer-link {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
