@@ -81,7 +81,8 @@ const HomePage = () => {
             <li key={index}>
               <strong>Naziv:</strong> {diagnosis.naziv}<br />
               <strong>Opis:</strong> {diagnosis.opis}<br />
-              <strong>Datum postavljanja dijagnoze:</strong> {formatDate(diagnosis.created_at)}
+              <strong>Datum postavljanja dijagnoze:</strong> {formatDate(diagnosis.created_at)}<br />
+              <strong>Terapija:</strong> {diagnosis.Terapija}<br />
             </li>
           ))}
         </ul>

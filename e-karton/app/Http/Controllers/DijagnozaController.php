@@ -22,6 +22,8 @@ class DijagnozaController extends Controller
             'lekar_id' => 'required|exists:lekars,id',
             'naziv' => 'required|string|max:255',
             'opis' => 'required|string',
+            'Terapija' => 'required|string',
+
         ]);
 
         $dijagnoza = Dijagnoza::create($validatedData);
@@ -41,6 +43,7 @@ class DijagnozaController extends Controller
             'lekar_id' => 'exists:lekars,id',
             'naziv' => 'string|max:255',
             'opis' => 'string',
+            'Terapija' => 'string',
         ]);
 
         $dijagnoza = Dijagnoza::findOrFail($id);
