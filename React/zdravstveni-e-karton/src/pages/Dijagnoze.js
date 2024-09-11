@@ -6,6 +6,8 @@ import '../styles/Dijagnoze.css';
 
 const HomePage = () => {
   const [diagnoses, setDiagnoses] = useState([]);
+  const [filteredDiagnoses, setFilteredDiagnoses] = useState([]); // Dodato stanje za filtrirane dijagnoze
+  const [searchTerm, setSearchTerm] = useState(''); // Stanje za pretragu
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
@@ -15,10 +17,7 @@ const HomePage = () => {
     
     if (loggedIn === 'true' && token) {
       setIsLoggedIn(true);
-      
-      console.log(`Bearer ${token}`);  // Provera tokena pre slanja zahteva
   
-      // Fetch podataka o trenutno ulogovanom korisniku
       axios.get('http://127.0.0.1:8000/api/user', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -26,7 +25,6 @@ const HomePage = () => {
       })
       .then(response => {
         const userId = response.data.id;
-        // Zatim dohvati dijagnoze za tog korisnika
         return axios.get(`http://127.0.0.1:8000/api/v1/users/${userId}/dijagnozas`, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -34,13 +32,24 @@ const HomePage = () => {
         });
       })
       .then(response => {
-        setDiagnoses(response.data); // Setuj dijagnoze iz odgovora
+        setDiagnoses(response.data);
+        setFilteredDiagnoses(response.data); // Inicijalno setuj filtrirane dijagnoze
       })
       .catch(error => {
         console.error('Error fetching diagnoses:', error);
       });
     }
   }, []);
+
+  // Funkcija za filtriranje dijagnoza po nazivu
+  const handleSearch = (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    setSearchTerm(searchValue);
+    const filtered = diagnoses.filter(diagnosis =>
+      diagnosis.naziv.toLowerCase().includes(searchValue)
+    );
+    setFilteredDiagnoses(filtered);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('loggedIn');
@@ -54,13 +63,21 @@ const HomePage = () => {
     return new Date(dateString).toLocaleDateString('sr-RS', options);
   };
 
-
   return (
     <div className="home-page">
       <h2>Moje Dijagnoze</h2>
+      
+      {/* Input polje za pretragu */}
+      <input
+        type="text"
+        placeholder="Pretraži po nazivu..."
+        value={searchTerm}
+        onChange={handleSearch} // Poziv funkcije za pretragu
+      />
+
       {isLoggedIn ? (
         <ul>
-          {diagnoses.map((diagnosis, index) => (
+          {filteredDiagnoses.map((diagnosis, index) => (
             <li key={index}>
               <strong>Naziv:</strong> {diagnosis.naziv}<br />
               <strong>Opis:</strong> {diagnosis.opis}<br />
@@ -82,7 +99,6 @@ const HomePage = () => {
       >
         Provera overenosti zdravstvene knjižice
       </a>
-
     </div>
   );
 };
