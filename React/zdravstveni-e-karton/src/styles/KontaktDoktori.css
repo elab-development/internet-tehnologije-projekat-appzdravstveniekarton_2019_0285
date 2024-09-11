@@ -1,51 +1,68 @@
-/* Osnovni stil za contact-page kontejner */
-.contact-page {
-    font-family: Arial, sans-serif; /* Postavi font za stranicu */
-    background-color: #f9f9f9; /* Svetlo siva pozadina */
-    padding: 20px; /* Unutrašnji razmak */
-    max-width: 800px; /* Maksimalna širina stranice */
-    margin: 0 auto; /* Centriranje stranice */
-    border-radius: 8px; /* Zaobljeni ivice */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sivi senk za dodatni efekat */
-  }
-  
-  /* Stil za naslov */
-  .contact-page h2 {
-    color: #333; /* Tamno siva boja teksta */
-    text-align: center; /* Centriranje naslova */
-    margin-bottom: 20px; /* Razmak ispod naslova */
-  }
-  
-  /* Stil za listu doktora */
-  .contact-page ul {
-    list-style-type: none; /* Ukloni standardne oznake liste */
-    padding: 0; /* Ukloni unutrašnji razmak */
-  }
-  
-  .contact-page li {
-    background-color: #fff; /* Bela pozadina za stavke liste */
-    margin-bottom: 10px; /* Razmak između stavki */
-    padding: 10px; /* Unutrašnji razmak u stavkama liste */
-    border-radius: 4px; /* Zaobljeni ivice */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Senka za stavke */
-  }
-  
-  /* Stil za dugme */
-  .contact-page .button {
-    display: block; /* Postavi dugme da bude blok element */
-    width: 200px; /* Širina dugmeta */
-    margin: 20px auto; /* Centriranje dugmeta */
-    padding: 10px; /* Unutrašnji razmak */
-    background-color: #007bff; /* Plava boja pozadine */
-    color: white; /* Bela boja teksta */
-    border: none; /* Ukloni okvir */
-    border-radius: 4px; /* Zaobljeni ivice */
-    font-size: 16px; /* Veličina fonta */
-    cursor: pointer; /* Prikaz kursora kao ruke na dugmetu */
-    transition: background-color 0.3s; /* Efekat prelaza na boji pozadine */
-  }
-  
-  .contact-page .button:hover {
-    background-color: #0056b3; /* Tamnija plava boja kada je dugme u fokusu */
-  }
-  
+/* Osnovni stil za home-page kontejner */
+.home-page {
+  font-family: Arial, sans-serif; /* Postavi font za stranicu */
+  background-color: #f4f4f4; /* Svetlo siva pozadina */
+  padding: 20px; /* Unutrašnji razmak */
+  max-width: 800px; /* Maksimalna širina stranice */
+  margin: 0 auto; /* Centriranje stranice */
+  border-radius: 8px; /* Zaobljeni ivice */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sivi senk za dodatni efekat */
+}
+
+/* Stil za naslov */
+.home-page h2 {
+  color: #333; /* Tamno siva boja teksta */
+  text-align: center; /* Centriranje naslova */
+  margin-bottom: 20px; /* Razmak ispod naslova */
+}
+
+/* Stil za listu dijagnoza */
+.home-page ul {
+  list-style-type: none; /* Ukloni standardne oznake liste */
+  padding: 0; /* Ukloni unutrašnji razmak */
+}
+
+.home-page li {
+  background-color: #fff; /* Bela pozadina za stavke liste */
+  margin-bottom: 10px; /* Razmak između stavki */
+  padding: 10px; /* Unutrašnji razmak u stavkama liste */
+  border-radius: 4px; /* Zaobljeni ivice */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Senka za stavke */
+}
+
+/* Stil za dugme */
+.home-page .button {
+  display: block; /* Postavi dugme da bude blok element */
+  width: 200px; /* Širina dugmeta */
+  margin: 20px auto; /* Centriranje dugmeta */
+  padding: 10px; /* Unutrašnji razmak */
+  background-color: #007bff; /* Plava boja pozadine */
+  color: white; /* Bela boja teksta */
+  border: none; /* Ukloni okvir */
+  border-radius: 4px; /* Zaobljeni ivice */
+  font-size: 16px; /* Veličina fonta */
+  cursor: pointer; /* Prikaz kursora kao ruke na dugmetu */
+  transition: background-color 0.3s; /* Efekat prelaza na boji pozadine */
+}
+
+.home-page .button:hover {
+  background-color: #0056b3; /* Tamnija plava boja kada je dugme u fokusu */
+}
+
+.footer-link {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  color: #007bff;
+  background-color: #f4f4f4;
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: #0056b3;
+}
