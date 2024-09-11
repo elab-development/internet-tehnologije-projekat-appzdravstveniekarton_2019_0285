@@ -72,6 +72,17 @@ const HomePage = () => {
         <p>Niste ulogovani. Molimo ulogujte se da vidite svoje dijagnoze.</p>
       )}
       <Button label="Odjavi se" onClick={handleLogout} />
+
+      {/* Link u donjem levom uglu */}
+      <a
+        href="https://www.rfzo.rs/index.php/osiguranalica/provera-overe-zdrisp"
+        className="footer-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Provera overenosti zdravstvene knjižice
+      </a>
+
     </div>
   );
 };
