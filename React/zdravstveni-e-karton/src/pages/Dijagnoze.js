@@ -59,6 +59,10 @@ const HomePage = () => {
     navigate('/login');
   };
 
+  const handleLogin = () => {
+    navigate('/login');
+  };
+
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('sr-RS', options);
@@ -97,7 +101,11 @@ const HomePage = () => {
         <p>Niste ulogovani. Molimo ulogujte se da vidite svoje dijagnoze.</p>
       )}
 
-      <Button label="Odjavi se" onClick={handleLogout} />
+      {isLoggedIn ? (
+        <Button label="Odjavi se" onClick={handleLogout} />
+      ) : (
+        <Button label="Uloguj se" onClick={handleLogin} />
+      )}
 
       {/* Navigacija za stranice */}
       <div className="pagination">

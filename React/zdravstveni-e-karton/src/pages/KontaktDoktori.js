@@ -6,11 +6,17 @@ import '../styles/KontaktDoktori.css';
 
 const ContactPage = () => {
     const [doctors, setDoctors] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const doctorsPerPage = 5; // Broj doktora po stranici
     const navigate = useNavigate();
 
     useEffect(() => {
+        const loggedIn = localStorage.getItem('loggedIn');
+        if (loggedIn === 'true') {
+            setIsLoggedIn(true);
+        }
+
         // Napraviti GET zahtev ka Laravel API-ju koristeći Axios
         axios.get('http://127.0.0.1:8000/lekars')
             .then(response => {
@@ -23,7 +29,12 @@ const ContactPage = () => {
 
     const handleLogout = () => {
         localStorage.removeItem('loggedIn');
-        localStorage.removeItem('username');
+        localStorage.removeItem('access_token');
+        setIsLoggedIn(false);
+        navigate('/login');
+    };
+
+    const handleLogin = () => {
         navigate('/login');
     };
 
@@ -45,7 +56,13 @@ const ContactPage = () => {
                     </li>
                 ))}
             </ul>
-            <Button label="Odjavi se" onClick={handleLogout} />
+
+            {/* Uslovno prikazivanje dugmeta na osnovu stanja prijave */}
+            {isLoggedIn ? (
+                <Button label="Odjavi se" onClick={handleLogout} />
+            ) : (
+                <Button label="Uloguj se" onClick={handleLogin} />
+            )}
 
             {/* Paginacija */}
             <div className="pagination">
