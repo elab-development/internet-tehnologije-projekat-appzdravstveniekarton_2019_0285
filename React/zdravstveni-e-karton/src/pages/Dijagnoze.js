@@ -11,16 +11,17 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState('desc'); // Sortiranje po datumu, silazno kao podrazumevano
   const diagnosesPerPage = 5;
   const navigate = useNavigate();
 
   useEffect(() => {
     const loggedIn = localStorage.getItem('loggedIn');
     const token = localStorage.getItem('access_token');
-    
+
     if (loggedIn === 'true' && token) {
       setIsLoggedIn(true);
-  
+
       axios.get('http://127.0.0.1:8000/api/user', {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -102,6 +103,15 @@ const HomePage = () => {
     }
   };
 
+  const sortDiagnoses = (order) => {
+    const sortedDiagnoses = [...filteredDiagnoses].sort((a, b) => {
+      const dateA = new Date(a.created_at);
+      const dateB = new Date(b.created_at);
+      return order === 'asc' ? dateA - dateB : dateB - dateA;
+    });
+    setFilteredDiagnoses(sortedDiagnoses);
+  };
+
   const indexOfLastDiagnosis = currentPage * diagnosesPerPage;
   const indexOfFirstDiagnosis = indexOfLastDiagnosis - diagnosesPerPage;
   const currentDiagnoses = filteredDiagnoses.slice(indexOfFirstDiagnosis, indexOfLastDiagnosis);
@@ -111,13 +121,22 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <h2>Moje Dijagnoze</h2>
-      
+
       <input
         type="text"
         placeholder="Pretraži po nazivu..."
         value={searchTerm}
         onChange={handleSearch}
       />
+
+      {/* Dugme za sortiranje po datumu */}
+      <button onClick={() => {
+        const newOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+        setSortOrder(newOrder);
+        sortDiagnoses(newOrder);
+      }}>
+        Sortiraj po datumu ({sortOrder === 'asc' ? 'Rastuće' : 'Opadajuće'})
+      </button>
 
       {isLoggedIn ? (
         <ul>
