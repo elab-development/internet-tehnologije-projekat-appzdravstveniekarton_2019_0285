@@ -9,16 +9,16 @@ const HomePage = () => {
   const [diagnoses, setDiagnoses] = useState([]);
   const [filteredDiagnoses, setFilteredDiagnoses] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortOrder, setSortOrder] = useState('asc'); // Drži redosled sortiranja
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState('desc'); // Sortiranje po datumu, silazno kao podrazumevano
   const diagnosesPerPage = 5;
   const navigate = useNavigate();
 
   useEffect(() => {
     const loggedIn = localStorage.getItem('loggedIn');
     const token = localStorage.getItem('access_token');
-
+    
     if (loggedIn === 'true' && token) {
       setIsLoggedIn(true);
 
@@ -54,6 +54,16 @@ const HomePage = () => {
     setFilteredDiagnoses(filtered);
   };
 
+  const handleSort = () => {
+    const sortedDiagnoses = [...filteredDiagnoses].sort((a, b) => {
+      const dateA = new Date(a.created_at);
+      const dateB = new Date(b.created_at);
+      return sortOrder === 'asc' ? dateA - dateB : dateB - dateA;
+    });
+    setFilteredDiagnoses(sortedDiagnoses);
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc'); // Prebacuje redosled sortiranja
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('loggedIn');
     localStorage.removeItem('access_token');
@@ -85,31 +95,20 @@ const HomePage = () => {
 
   const handleDiagnosisClick = async (diagnosis) => {
     try {
-      const blob = await pdf(<MyDocument diagnosis={diagnosis} />).toBlob();  // Generiši PDF kao Blob
-      const url = URL.createObjectURL(blob);  // Kreiraj URL za preuzimanje
+      const blob = await pdf(<MyDocument diagnosis={diagnosis} />).toBlob();
+      const url = URL.createObjectURL(blob);
   
-      // Otvori PDF u novom prozoru ili direktno preuzmi fajl
       const link = document.createElement('a');
       link.href = url;
-      link.download = `${diagnosis.naziv}.pdf`;  // Postavi naziv fajla za preuzimanje
+      link.download = `${diagnosis.naziv}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
   
-      // Oslobodi resurse vezane za URL
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error generating or downloading PDF:', error);
     }
-  };
-
-  const sortDiagnoses = (order) => {
-    const sortedDiagnoses = [...filteredDiagnoses].sort((a, b) => {
-      const dateA = new Date(a.created_at);
-      const dateB = new Date(b.created_at);
-      return order === 'asc' ? dateA - dateB : dateB - dateA;
-    });
-    setFilteredDiagnoses(sortedDiagnoses);
   };
 
   const indexOfLastDiagnosis = currentPage * diagnosesPerPage;
@@ -122,21 +121,18 @@ const HomePage = () => {
     <div className="home-page">
       <h2>Moje Dijagnoze</h2>
 
-      <input
-        type="text"
-        placeholder="Pretraži po nazivu..."
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-
-      {/* Dugme za sortiranje po datumu */}
-      <button onClick={() => {
-        const newOrder = sortOrder === 'asc' ? 'desc' : 'asc';
-        setSortOrder(newOrder);
-        sortDiagnoses(newOrder);
-      }}>
-        Sortiraj po datumu ({sortOrder === 'asc' ? 'Rastuće' : 'Opadajuće'})
-      </button>
+      {/* Search and Sort Container */}
+      <div className="search-sort-container">
+        <input
+          type="text"
+          placeholder="Pretraži po nazivu..."
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+        <button onClick={handleSort}>
+          Sortiraj po datumu {sortOrder === 'asc' ? '⬆️' : '⬇️'}
+        </button>
+      </div>
 
       {isLoggedIn ? (
         <ul>

@@ -3,14 +3,40 @@
   padding: 20px;
 }
 
+/* Container for search input and sort button */
+.search-sort-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 /* Stil za polje za pretragu */
 .home-page input[type="text"] {
   padding: 10px;
-  margin-bottom: 20px;
   width: 100%;
   max-width: 400px;
   border: 1px solid #ddd;
   border-radius: 4px;
+}
+
+/* Space between search input and sort button */
+.search-sort-container button {
+  margin-left: 10px; /* Razmak između polja za pretragu i dugmeta za sortiranje */
+}
+
+/* Stil za dugme za sortiranje */
+.home-page button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.home-page button:hover {
+  background-color: #0056b3;
 }
 
 /* Stilovi za listu dijagnoza */
@@ -25,49 +51,46 @@
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer; /* Ovo će promeniti kursor u pokazivač */
-  transition: background-color 0.3s; /* Animacija prelaska boje pozadine */
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .home-page li:hover {
-  background-color: #e0e0e0; /* Svetlija pozadina kad korisnik pređe mišem */
+  background-color: #e0e0e0;
 }
 
 /* Stilovi za dugmad paginacije */
 .pagination {
-  display: flex; /* Postavlja elemente u jedan red */
-  justify-content: center; /* Centriranje paginacije */
-  margin-top: 20px; /* Razmak iznad paginacije */
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-/* Stil za dugmad paginacije */
 .pagination button {
-  background-color: #007bff; /* Plava pozadina */
-  color: white; /* Bela boja teksta */
-  border: none; /* Bez ivica */
-  padding: 8px 16px; /* Unutrašnji razmak */
-  margin: 0 5px; /* Razmak između dugmadi */
-  border-radius: 4px; /* Zaobljeni ivice */
-  cursor: pointer; /* Prikaz kursora kao ruke na dugmetu */
-  font-size: 14px; /* Veličina fonta */
-  transition: background-color 0.3s; /* Prelaz na boji pozadine */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
 }
 
 .pagination button:hover {
-  background-color: #0056b3; /* Tamnija plava pri hover efektu */
+  background-color: #0056b3;
 }
 
-/* Stil za trenutno aktivnu stranicu */
 .pagination button.active {
-  background-color: #0056b3; /* Tamnija plava za aktivnu stranicu */
-  font-weight: bold; /* Podebljan font */
-  cursor: default; /* Standardni kursor */
+  background-color: #0056b3;
+  font-weight: bold;
+  cursor: default;
 }
 
-/* Stil za onemogućeno dugme (ako je potrebno) */
 .pagination button:disabled {
-  background-color: #cccccc; /* Svetlo siva pozadina */
-  cursor: not-allowed; /* Kursor za onemogućeno stanje */
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
 /* Stil za footer link */
