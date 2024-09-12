@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Button from '../components/Button';
+import { Page, Text, View, Document, PDFDownloadLink, pdf } from '@react-pdf/renderer'; // Import za PDF
 import '../styles/Dijagnoze.css';
+import Button from '../components/Button';
 
 const HomePage = () => {
   const [diagnoses, setDiagnoses] = useState([]);
   const [filteredDiagnoses, setFilteredDiagnoses] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1); // Dodato stanje za trenutnu stranicu
-  const diagnosesPerPage = 5; // Broj dijagnoza po stranici
+  const [currentPage, setCurrentPage] = useState(1);
+  const diagnosesPerPage = 5;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,7 +69,39 @@ const HomePage = () => {
     return new Date(dateString).toLocaleDateString('sr-RS', options);
   };
 
-  // Računanje dijagnoza za trenutnu stranicu
+  const MyDocument = ({ diagnosis }) => (
+    <Document>
+      <Page>
+        <View>
+          <Text>Naziv: {diagnosis.naziv}</Text>
+          <Text>Opis: {diagnosis.opis}</Text>
+          <Text>Datum postavljanja dijagnoze: {formatDate(diagnosis.created_at)}</Text>
+          <Text>Terapija: {diagnosis.Terapija}</Text>
+        </View>
+      </Page>
+    </Document>
+  );
+
+  const handleDiagnosisClick = async (diagnosis) => {
+    try {
+      const blob = await pdf(<MyDocument diagnosis={diagnosis} />).toBlob();  // Generiši PDF kao Blob
+      const url = URL.createObjectURL(blob);  // Kreiraj URL za preuzimanje
+  
+      // Otvori PDF u novom prozoru ili direktno preuzmi fajl
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${diagnosis.naziv}.pdf`;  // Postavi naziv fajla za preuzimanje
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+  
+      // Oslobodi resurse vezane za URL
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error generating or downloading PDF:', error);
+    }
+  };
+
   const indexOfLastDiagnosis = currentPage * diagnosesPerPage;
   const indexOfFirstDiagnosis = indexOfLastDiagnosis - diagnosesPerPage;
   const currentDiagnoses = filteredDiagnoses.slice(indexOfFirstDiagnosis, indexOfLastDiagnosis);
@@ -89,7 +122,7 @@ const HomePage = () => {
       {isLoggedIn ? (
         <ul>
           {currentDiagnoses.map((diagnosis, index) => (
-            <li key={index}>
+            <li key={index} onClick={() => handleDiagnosisClick(diagnosis)}>
               <strong>Naziv:</strong> {diagnosis.naziv}<br />
               <strong>Opis:</strong> {diagnosis.opis}<br />
               <strong>Datum postavljanja dijagnoze:</strong> {formatDate(diagnosis.created_at)}<br />
