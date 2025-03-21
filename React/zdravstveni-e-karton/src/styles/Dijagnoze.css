@@ -1,0 +1,107 @@
+/* Stilovi za glavnu stranicu */
+.home-page {
+  padding: 20px;
+}
+
+/* Container for search input and sort button */
+.search-sort-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Stil za polje za pretragu */
+.home-page input[type="text"] {
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Space between search input and sort button */
+.search-sort-container button {
+  margin-left: 10px; /* Razmak između polja za pretragu i dugmeta za sortiranje */
+}
+
+/* Stil za dugme za sortiranje */
+.home-page button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.home-page button:hover {
+  background-color: #0056b3;
+}
+
+/* Stilovi za listu dijagnoza */
+.home-page ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.home-page li {
+  background-color: #f8f8f8;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.home-page li:hover {
+  background-color: #e0e0e0;
+}
+
+/* Stilovi za dugmad paginacije */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination button.active {
+  background-color: #0056b3;
+  font-weight: bold;
+  cursor: default;
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Stil za footer link */
+.footer-link {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}

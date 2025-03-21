@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name": "Dr. Ivan", "specialty": "Cardiology" },
+    { "id": 2, "name": "Dr. Jelena", "specialty": "Neurology" },
+    { "id": 3, "name": "Dr. Marko", "specialty": "Orthopedics" }
+  ]
+  

@@ -1,0 +1,47 @@
+/* Osnovni stil za navbar */
+.navbar {
+  background-color: #212529; /* Tamna siva boja pozadine trake */
+  padding: 0.5rem 1rem; /* Unutrašnji razmak trake */
+}
+
+.navbar-brand {
+  color: #000000; /* Bela boja teksta */
+  font-weight: bold; /* Podebljan font */
+  font-size: 1.5rem; /* Veći font za brend */
+}
+
+.navbar-brand:hover {
+  color: #000000; /* Svetlo siva boja na hover */
+}
+
+.nav-link {
+  color: #000000; /* Bela boja teksta */
+  padding: 12px 20px; /* Veći unutrašnji razmak za linkove */
+  font-size: 1.1rem; /* Veći font za linkove */
+}
+
+.nav-link:hover {
+  background-color: #495057; /* Tamnija siva boja pozadine na hover */
+  border-radius: 4px; /* Zaobljeni ivice */
+  color: #ffffff; /* Bela boja teksta na hover */
+}
+
+/* Stilizuj navbar-collapse da bude vidljiv */
+.navbar-collapse {
+  justify-content: flex-end; /* Poravnanje linkova desno */
+}
+
+/* Osiguraj da navbar bude uvek vidljiv na stranici */
+.navbar-toggler {
+  border: none; /* Ukloni okvir za hamburger meni */
+  background-color: #212529; /* Tamna boja pozadine za hamburger meni */
+}
+
+.navbar-toggler-icon {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNDAgMTQiPjxwYXRoIGQ9Ik0wIDBoMTQwVjBoLTE0MnoiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZ2h0PSIxMCIgc3Ryb2tlLW9wY2FpdHk9InJvdW5kIi8+PHBhdGggZD0iTTAgMjB2OHoiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZ2h0PSIxMCIgc3Ryb2tlLW9wY2FpdHk9InJvdW5kIi8+PHBhdGggZD0iTTAgMTB2OHoiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZ2h0PSIxMCIgc3Ryb2tlLW9wY2FpdHk9InJvdW5kIi8+PHBhdGggZD0iTTAgMCA2MCA2MCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjEwIiBzdHJva2Utb3BhY2l0eT0icm91bmQiLz48L3N2Zz4=');
+}
+
+/* Stilizuj menu kada je otvoren */
+.navbar-collapse.collapse.show {
+  display: flex; /* Postavi kao flex da bi se prikazali svi linkovi */
+}
